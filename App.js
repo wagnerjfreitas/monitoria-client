@@ -1,10 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { api, sendFile, testAccessBySerial } from './src/api';
 
 export default function App() {
+
+  console.log('------------------------------------')
+
+  useEffect(() => {
+    postFileLog();
+  }, [])
+
+  const postFileLog = async () => {
+    await api.postAccessBySerial();
+    await api.postFile();
+    testAccessBySerial();
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>MonitoriaApi Request</Text>
       <StatusBar style="auto" />
     </View>
   );
